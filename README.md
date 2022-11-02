@@ -18,3 +18,8 @@ Based on Microsoft's [python3-postgres](https://github.com/microsoft/vscode-dev-
     meltano add extractor tap-csv
     meltano config tap-csv set files '[{"entity":"test", "path": "../csv-data/test.csv", "keys": ["Name","Email","Phone Number","Address"]}]'
     ```
+3.  The loader [target-postgres](https://hub.meltano.com/loaders/target-postgres/) should already be pre-configured for you. Test it out with your loader (for example, `tap-csv`):
+    ```
+    meltano run tap-csv target-postgres
+    ```
+    Then log into adminer at http://localhost:8080 and go to database `postgres`. You should now see a new schema `tap_csv` with your table in it.
