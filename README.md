@@ -19,8 +19,13 @@ Based on Microsoft's [python3-postgres](https://github.com/microsoft/vscode-dev-
 2.  [Set up your loader](https://docs.meltano.com/getting-started/part1). For example, for CSV data:
     ```
     meltano add extractor tap-csv
-    meltano config tap-csv set files '[{"entity":"test", "path": "../csv-data/test.csv", "keys": ["Name","Email","Phone Number","Address"]}]'
+    meltano config tap-csv set files '[{"entity":"test", "path": "../csv-data", "keys": ["Email"]}]'
     ```
+    Note that `target-postgres` requires at least one unique key to be defined. It's easy to verify whether a column is unique in a CSV file in Bash:
+    ```
+    cut -d, -f1 csv-data/test.csv | sort | uniq -d
+    ```
+    This will print duplicate rows in the first column of a CSV file.
 3.  The loader [target-postgres](https://hub.meltano.com/loaders/target-postgres/) should already be pre-configured for you. Test it out with your loader (for example, `tap-csv`):
     ```
     meltano run tap-csv target-postgres
