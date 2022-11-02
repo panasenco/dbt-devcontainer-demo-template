@@ -7,10 +7,25 @@ RUN pip install --upgrade pip
 
 RUN pip install meltano
 
-RUN mkdir -p /workspace/demo/.meltano/transformers/dbt/target
+USER vscode
+WORKDIR /workspace
+RUN meltano init demo
+WORKDIR /workspace/demo
+RUN meltano add loader target-postgres \
+    && meltano config target-postgres set host warehouse \
+    && meltano config target-postgres set user postgres \
+    && meltano config target-postgres set password postgres \
+    && meltano config target-postgres set dbname postgres \
+    && meltano add transformer dbt-postgres \
+    && meltano config dbt-postgres set host warehouse \
+    && meltano config dbt-postgres set port 5432 \
+    && meltano config dbt-postgres set user postgres \
+    && meltano config dbt-postgres set password postgres \
+    && meltano config dbt-postgres set dbname postgres \
+    && meltano config dbt-postgres set schema analytics \
+    && meltano invoke dbt-postgres:docs-generate
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+WORKDIR /workspace
+RUN mv /workspace/demo /tmp
 
 ENTRYPOINT ["python", "-m", "http.server", "--directory", "/workspace/demo/.meltano/transformers/dbt/target", "8081"]

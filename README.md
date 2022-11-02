@@ -1,7 +1,8 @@
 # meltano-dbt-demo-template
-Template to create self-contained demos of loading data with Meltano and transforming with dbt. Useful for interviews.
+Template to create self-contained [dev container](https://containers.dev) demos of loading data with Meltano and transforming with dbt. Useful for interviews.
 
 Based on Microsoft's [python3-postgres](https://github.com/microsoft/vscode-dev-containers/tree/main/containers/python-3-postgres) example.
+
 
 ## Setup
 
@@ -11,7 +12,9 @@ Based on Microsoft's [python3-postgres](https://github.com/microsoft/vscode-dev-
 4.  Open http://localhost:8080 to access Postgres administration and querying. Choose "PostgreSQL" as the system, and enter "postgres" as the username and password.
 5.  Open http://localhost:8081 to see dbt docs.
 
+
 ## Usage
+
 1.  `cd demo`
 2.  [Set up your loader](https://docs.meltano.com/getting-started/part1). For example, for CSV data:
     ```
@@ -22,4 +25,5 @@ Based on Microsoft's [python3-postgres](https://github.com/microsoft/vscode-dev-
     ```
     meltano run tap-csv target-postgres
     ```
-    Then log into adminer at http://localhost:8080 and go to database `postgres`. You should now see a new schema `tap_csv` with your table in it.
+    Then log into Adminer at http://localhost:8080 and go to database `postgres`. You should now see a new schema `tap_csv` with your table in it.
+4.  You can now declare your sources in your dbt project in `demo/transform`. To update docs, run `meltano invoke dbt-postgres:docs-generate`. The updated documentation will be available at http://localhost:8081. To run the transformations, run `meltano invoke dbt-postgres:run`. To run your tests, run `meltano invoke dbt-postgres:test`. Query your table data in Adminer at http://localhost:8080.
