@@ -1,0 +1,13 @@
+demo:
+  outputs:
+    demo:
+      type: postgres
+      threads: 1
+      host: warehouse
+      port: 5432
+      user: postgres
+      pass: postgres
+      dbname: postgres
+      schema: analytics
+
+  target: demo
