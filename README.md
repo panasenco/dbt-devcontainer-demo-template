@@ -17,21 +17,20 @@ Template to create self-contained [dev container](https://containers.dev) demos 
 
 ## Usage
 
-1.  `cd dbtproject`
-2.  Copy your CSV file into `dbtproject/seeds` to use it as a [dbt seed](https://docs.getdbt.com/docs/build/seeds).
-3.  Run `dbt seed`
-4.  Generate dbt schema for your seed using the following command (be sure to replace "test" with the basename of your CSV file):
+1.  Copy your CSV file into `seeds/` to use it as a [dbt seed](https://docs.getdbt.com/docs/build/seeds).
+2.  Run `dbt seed`
+3.  Generate dbt schema for your seed using the following command (be sure to replace "test" with the basename of your CSV file):
     ```
     dbt run-operation generate_model_yaml --args '{"model_name": "test"}'
     ```
     Copy and paste the output to a new file `seeds/schema.yml`, replacing 'models:' with 'seeds:'.
     Re-generate the docs with `dbt docs generate` and you should now be able to see your source declaration when you refresh http://localhost:8081
-5.  Code your transformations as usual. Some useful references:
+4.  Code your transformations as usual. Some useful references:
     - [dbt Labs recommended project structure](https://docs.getdbt.com/guides/best-practices/how-we-structure/1-guide-overview)
     - [dbt Labs recommended SQL style guide](https://github.com/dbt-labs/corp/blob/main/dbt_style_guide.md)
-6.  To update docs, run `dbt docs generate`. The updated documentation will be available on refresh at http://localhost:8081.
-7.  Run the transformations with `dbt run` and tests with `dbt test` as usual.
-8.  Query your table data in Adminer at http://localhost:8080. Choose "PostgreSQL" as the system, leave "warehouse" as the server, and enter "postgres" as both the username and password.
+5.  To update docs, run `dbt docs generate`. The updated documentation will be available on refresh at http://localhost:8081.
+6.  Run the transformations with `dbt run` and tests with `dbt test` as usual.
+7.  Query your table data in Adminer at http://localhost:8080. Choose "PostgreSQL" as the system, leave "warehouse" as the server, and enter "postgres" as both the username and password.
 
 ## Credits
 
