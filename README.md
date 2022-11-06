@@ -17,8 +17,8 @@ Template to create self-contained [dev container](https://containers.dev) demos 
 
 ## Usage
 
-1.  `cd demo`
-2.  Copy your CSV file into `demo/seeds` to use it as a [dbt seed](https://docs.getdbt.com/docs/build/seeds).
+1.  `cd dbtproject`
+2.  Copy your CSV file into `dbtproject/seeds` to use it as a [dbt seed](https://docs.getdbt.com/docs/build/seeds).
 3.  Run `dbt seed`
 4.  Generate dbt schema for your seed using the following command (be sure to replace "test" with the basename of your CSV file):
     ```

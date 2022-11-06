@@ -10,4 +10,4 @@ WORKDIR /workspace
 RUN mkdir -p /home/vscode/.dbt
 COPY profiles.yml /home/vscode/.dbt
 
-ENTRYPOINT ["python", "-m", "http.server", "--directory", "/workspace/demo/target", "8081"]
+ENTRYPOINT ["python", "-m", "http.server", "--directory", "/workspace/dbtproject/target", "8081"]

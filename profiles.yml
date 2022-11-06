@@ -1,6 +1,6 @@
-demo:
+devcontainer:
   outputs:
-    demo:
+    devcontainer:
       type: postgres
       threads: 1
       host: warehouse
@@ -9,5 +9,4 @@ demo:
       pass: postgres
       dbname: postgres
       schema: analytics
-
-  target: demo
+  target: devcontainer
